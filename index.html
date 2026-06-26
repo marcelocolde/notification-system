@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>notification-system</title>
+    <link rel="stylesheet" href="./src/index.css" />
+    <script type="module" src="/src/components/notification-container.js"></script>
+    <script type="module" src="/src/components/notification-toast.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 16px;
+        padding: 48px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        width: 480px;
+      }
+
+      h1 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #1a1a2e;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 32px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.1s;
+      }
+
+      button:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      #btn-success { background-color: #4caf50; color: white; }
+      #btn-error   { background-color: #f44336; color: white; }
+      #btn-warning { background-color: #ff9800; color: white; }
+      #btn-info    { background-color: #2196f3; color: white; }
+    </style>
+  </head>
+  <body>
+
+    <div class="card">
+      <h1>Sistema de Notificaciones</h1>
+      <p>Hacé click en los botones para ver las notificaciones</p>
+      <div class="buttons">
+        <button id="btn-success"> Éxito</button>
+        <button id="btn-error"> Error</button>
+        <button id="btn-warning"> Advertencia</button>
+        <button id="btn-info"> Información</button>
+      </div>
+    </div>
+
+    <notification-container></notification-container>
+
+    <script type="module">
+      import './src/components/notification-container.js';
+
+      const container = document.querySelector('notification-container');
+
+      document.getElementById('btn-success').addEventListener('click', () => {
+        container.addNotification('Operación exitosa', 'success');
+      });
+
+      document.getElementById('btn-error').addEventListener('click', () => {
+        container.addNotification('Ocurrió un error', 'error');
+      });
+
+      document.getElementById('btn-warning').addEventListener('click', () => {
+        container.addNotification('Atención, revisá esto', 'warning');
+      });
+
+      document.getElementById('btn-info').addEventListener('click', () => {
+        container.addNotification('Información disponible', 'info');
+      });
+    </script>
+  </body>
+</html>
