@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import './notification-toast.js';
 
 export class NotificationContainer extends LitElement {
 
@@ -31,7 +32,7 @@ export class NotificationContainer extends LitElement {
         const id = Date.now();
         const fadeDuration = 500;
         this.notifications = [...this.notifications, { id, message, type, fading: false }];
-        
+
         setTimeout(() => {
             this.notifications = this.notifications.map(n =>
                 n.id === id ? { ...n, fading: true } : n
